@@ -1,0 +1,44 @@
+<div>
+<div class="banner">
+   <div class="content">
+      <h1 class="mb-5">Choose Your Bikes <br><br>{{message}}</h1>
+   <a routerLink="/motor">View all <i class="bi bi-arrow-right"></i></a>
+   </div>
+</div>
+
+<!-- vehicle box -->
+
+<h1 class="text-center">All <span class="highlight">Companies</span></h1>
+<div class="container">
+    <div class="row">
+        <ng-container *ngFor="let ac of bikes">
+
+        <div class="card col-md-3">
+         <a routerLink="{{ac.link}}"><img src="{{ac.logo}}" alt="{{ac.alt}}" class="img-fluid"></a>
+                                
+                    <!-- <button class="btn btn-danger btn-sm">Book Now</button> -->
+                    
+                    <!-- <button class="btn btn-danger btn-sm"><a routerLink="{{ac.link}}">View all <i class="bi bi-arrow-right"></i></a></button> -->
+                                    
+
+        </div>
+    </ng-container>
+    </div>
+</div>
+
+   <div class="co">
+      <a routerLink="/motor">View all <i class="bi bi-arrow-right"></i></a>
+   </div>
+   <br>
+   <br>
+
+
+
+ 
+
+  
+
+
+
+ 
+     

@@ -1,0 +1,14 @@
+.banner{
+    background-image: url('../../../assets/img/banner2.jpg');
+    height: 800px;
+    background-position: center bottom;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    /* overflow: hidden; */
+    /* margin-top: 0px; */
+}
+
+h1{
+    color: rgb(145, 20, 20);
+}

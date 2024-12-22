@@ -1,0 +1,68 @@
+
+
+    <div class="container">
+        <div class="row">
+            <ng-container *ngFor="let vd of bikes">
+
+            <div class="card col-md-3">
+                <img src="{{vd.vimg}}" alt="{{vd.Model}}" class="img-fluid" [routerLink]="['/bajaj',vd.id]">
+                                    
+                        <!-- <button class="btn btn-danger btn-sm">Book Now</button> -->
+                        <table>
+                            <tr>
+                                <td></td>
+                                <td><h2>{{vd.Model}}</h2></td>
+                            </tr>
+                            <tr>
+                                <td>Price:</td>
+                                <td>{{vd.price|currency:'INR'}}</td>
+                            </tr>
+                            <tr>
+                                <td>Type:</td>
+                                <td>{{vd.Type}}</td>
+                            </tr>
+                            <tr>
+                                <td>Engine:</td>
+                                <td>{{vd.Engine}}</td>
+                            </tr>
+                            <tr>
+                                <td>Gears:</td>
+                                <td>{{vd.Gears}}</td>
+                            </tr>
+                        </table><br>
+                        <button class="btn btn-danger btn-sm"><a routerLink="/address" (click)="func()">Book Now</a></button>
+                    
+
+            </div>
+        </ng-container>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

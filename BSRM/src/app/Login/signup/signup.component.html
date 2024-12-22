@@ -1,0 +1,36 @@
+<!-- <form [formGroup]="registerForm" (submit)="submit()">
+    <h1 class="h3 mb-3 fw-normal">Please Sign Up</h1>
+    <div class="form-floating mb-2">
+      <input formControlName="username" class="form-control" placeholder="Name" required>
+      <label for="floatingInput">Name</label>
+    </div>
+    <div class="form-floating mb-2">
+      <input formControlName="email" type="email" class="form-control" placeholder="Email" required>
+      <label for="floatingInput">Email</label>
+    </div>
+    <div class="form-floating mb-2">
+      <input formControlName="password" type="password" class="form-control" placeholder="Password" required>
+      <label for="floatingPassword">Password</label>
+    </div>
+    <div class="form-floating mb-2">
+      <input formControlName="confirmPassword" type="password" class="form-control" placeholder="Confirm Password" required>
+      <label for="floatingPassword">Confirm Password</label>
+      <div *ngIf="!passwordsMatch && registerForm.controls.confirmPassword.touched" class="text-danger">Passwords do not match.</div>
+  
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+  </form>-->
+
+  <div class="login-page">
+  <div class="form">
+   <form class="login-form" [formGroup]="registerForm" (submit)="submit()">
+    <input formControlName="username" class="form-control" placeholder="Name" required>
+    <input formControlName="email" type="email" class="form-control" placeholder="Email" required>
+    <input formControlName="password" type="password" class="form-control" placeholder="Password" required>
+    <input formControlName="confirmPassword" type="password" class="form-control" placeholder="Confirm Password" required>
+    <div *ngIf="!passwordsMatch && registerForm.controls.confirmPassword.touched" class="text-danger">Passwords do not match.</div>
+    <button type="submit">create</button>
+    <p class="message">Already registered? <a href="/">Sign In</a></p>
+  </form>
+  </div>
+  </div>

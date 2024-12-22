@@ -1,0 +1,80 @@
+/* .col-md-3{
+    width: 250px;
+    height: 30px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    position:-webkit-sticky;
+    margin: 20px;
+    
+}
+
+
+
+tr:hover{
+    color: rgb(211, 131, 12);
+}
+
+.bgi{
+    background-image: url("../../../assets/img/Bajaj.jpg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-clip:border-box;
+    height: 100vh;
+    
+}
+
+button:hover{
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+a{
+    color: #fff;
+    text-decoration: none;
+} */
+
+
+.card img{
+    width: 200px;
+    height: 200px;
+    margin-bottom: 25px;
+    margin-left: 40px;
+    transition: 0.3s ease-in-out;
+}
+
+.card img:hover{
+    transition: 0.3s ease-in-out;
+    transform: scale(1.1);
+
+}
+
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    padding: 20px;
+    min-width: 0;
+    border: none;
+}
+
+h2{
+    font-weight: bold;
+    color: rgb(252, 14, 14);
+}
+
+td{
+    font-weight: bold;
+} 
+
+button:hover{
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+a{
+    color: #fff;
+    text-decoration: none;
+}

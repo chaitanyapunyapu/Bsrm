@@ -1,0 +1,161 @@
+.banner{
+    background-image: url("../../../assets/img/race.jpg");
+    height: 700px;
+    background-position: center ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-attachment:fixed; */
+    /* overflow: hidden; */
+}
+
+.content h1{
+    color: rgb(100, 32, 209);
+    font-size: 60px;
+    font-weight: bold;
+    
+}
+
+.content{
+    top: 25%;
+    left: 5%;
+    position:absolute;
+}
+
+.content a{
+    text-decoration: none;
+    background-color: #fff;
+    color: var(--primary-color);
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.content a:hover{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* bikes detail */
+
+/* .col-md-3{
+    width: 150px;
+    height: 200px;
+    padding: 10px;
+    position:static;
+    align-items: center;
+} */
+/* card{
+    width: 250px;
+    height: 250px;
+    padding: 10px;
+} */
+
+/* img{
+    width:100px;
+} */
+
+a:link,a:visited{
+    /* background-color: rgb(22, 25, 218);
+    padding: 5px 10px;
+    text-align: center; */
+    /* display: inline-block; */
+    /* margin-left: 20px; */
+    /* margin-right: 100px; */
+    text-decoration: none;
+    color: #f1edf5;
+}
+
+img {
+    width: 60%;
+    margin: auto;
+    display: block;
+  }
+
+ .card-body{
+    text-align: center;
+ }
+
+img{
+    width:6rem;
+    height:6rem;
+}
+
+.row{
+    display: flex;
+}
+
+.highlight{
+    color: var(--primary-color);
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.co a{
+    text-decoration: none;
+    background-color: rgb(252, 238, 42);
+    color: black;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.co a:hover{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.co{
+    left: 100px;
+    position:relative;
+
+}
+
+/* new */
+
+.card img{
+    width: 200px;
+    height: 200px;
+    margin-bottom: 25px;
+    margin-left: 40px;
+    transition: 0.3s ease-in-out;
+}
+
+.card img:hover{
+    transition: 0.3s ease-in-out;
+    transform: scale(1.1);
+
+}
+
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    padding: 20px;
+    min-width: 0;
+    border: none;
+}
+
+h2{
+    font-weight: bold;
+    color: rgb(252, 14, 14);
+}
+
+td{
+    font-weight: bold;
+} 
+
+button:hover{
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+a{
+    color: #fff;
+    text-decoration: none;
+}
+
+h1{
+    padding-top: 60px;
+}

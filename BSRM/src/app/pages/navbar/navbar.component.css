@@ -1,0 +1,35 @@
+.nav-link{
+    color: var(--secondary-color);
+}
+.nav-link.active-link{
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+.nav-item dropdown{
+    color: #fff;
+}
+
+.bgc{
+    background-color: aqua;
+}
+
+li:first-child a{
+    text-decoration: none;
+}
+
+li:nth-child(2) a{
+    text-decoration: none;
+}
+
+li:nth-child(3) a{
+    text-decoration: none;
+}
+
+li:last-child a{
+    text-decoration: none;
+}
+
+#special{
+    padding: 0px;
+    margin: 0px;
+}

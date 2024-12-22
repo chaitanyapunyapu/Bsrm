@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="side-nav-button p-2 me-3 text-light">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="">Book My Motor</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li>
+            <form class="d-flex me-5">
+              <input class="form-control me-2" type="search" placeholder="Search">
+              <button class="btn btn-outline-dark" type="submit"><i class="bi bi-search"></i></button>
+          </form>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="home" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="motor" routerLinkActive="active-link">Motor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="about" routerLinkActive="active-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="contact" routerLinkActive="active-link">Contact</a>
+          </li>      
+        <!--  -->    
+          <li class="nav-item" *ngIf="!authenticated">
+            <a routerLink="/" class="nav-link">Login</a>
+          </li>
+          <!-- <li class="nav-item" *ngIf="!authenticated">
+            <a routerLink="register" class="nav-link">Sign Up</a>
+          </li>       -->
+        <!--  -->        
+          <li class="nav-item" *ngIf="authenticated">
+            <a routerLink="/" class="nav-link" (click)="logout()" routerLinkActive="active-link">Logout</a>
+          </li>
+        </ul>
+        <!--  -->
+      </div>
+    </div>
+  </nav>
+  
+

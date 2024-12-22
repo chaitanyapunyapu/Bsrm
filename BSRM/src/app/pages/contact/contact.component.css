@@ -1,0 +1,98 @@
+/* 
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], em, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+} */
+
+.cont{
+  border-radius: 5px;
+  background-color: #57e2a80e;
+  padding: 20px;
+  width: 400px;
+  top: 50%;
+  left: 50%;
+   width: 30em;
+   transform: translate(-50%, -50%);
+   border: 1px solid #666;
+   /* background-color: #b9faac; */
+   position: fixed;
+        
+
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.la{
+  color: rgb(250, 255, 255);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 750;
+}
+
+/* body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;} */
+
+input[type=submit]:hover {
+  background-color: #ceb02a;
+}
+
+input[type=text]{
+  border: 1px;
+  border-radius: 0px;
+  height: 155%;
+}
+
+input[type=email]{
+  border: 1px;
+  border-radius: 0px;
+}
+
+textarea{
+  border: 1px;
+  border-radius: 2px;
+}
+
+.bg{
+  background-image: url(https://cdn.pixabay.com/photo/2018/05/07/17/16/contact-details-3381225__340.jpg);
+  height: 700px;
+    background-position: center bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    overflow: hidden;
+}
+
