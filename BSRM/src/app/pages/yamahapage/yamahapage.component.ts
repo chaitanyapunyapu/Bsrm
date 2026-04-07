@@ -1,39 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BikedetailsService } from 'src/app/service/bikedetails.service';
-
 
 @Component({
   selector: 'app-yamahapage',
   templateUrl: './yamahapage.component.html',
   styleUrls: ['./yamahapage.component.css']
 })
-export class YamahapageComponent implements OnInit{
-  yamahaData: any[]=[];
+export class YamahapageComponent implements OnInit {
+  yamahaData: any = null;
   getYamahaId: any;
   bikes: any[] = [];
+  isImageOpen: boolean = false;
 
-constructor(private param:ActivatedRoute, private api:BikedetailsService) { }
+  constructor(
+    private param: ActivatedRoute,
+    private api: BikedetailsService,
+    private router: Router
+  ) {}
 
+  ngOnInit(): void {
+    this.getYamahaId = this.param.snapshot.paramMap.get('id');
 
-ngOnInit(): void {
-  this.getYamahaId = this.param.snapshot.paramMap.get('id');
-  console.log(this.getYamahaId, 'getyamaha');
+    this.api.getYamaha().subscribe((bikes: any[]) => {
+      this.bikes = bikes;
+      if (this.getYamahaId) {
+        this.yamahaData = this.bikes.find(b => b.id == this.getYamahaId);
+      }
+    });
+  }
 
-  // fetch data from backend
-  this.api.getYamaha().subscribe((bikes: any[]) => {
-    this.bikes = bikes;
+  toggleImage(): void {
+    this.isImageOpen = !this.isImageOpen;
+    document.body.style.overflow = this.isImageOpen ? 'hidden' : 'auto';
+  }
 
-    if (this.getYamahaId) {
-      this.yamahaData = this.bikes.filter((value) => {
-        return value.id == this.getYamahaId;
-      });
-      console.log(this.yamahaData, 'yamahadata>>');
-    }
-  })
+  goBack(): void {
+    this.router.navigate(['/yamaha']);
+  }
 }
-}
-      
-  
-
-

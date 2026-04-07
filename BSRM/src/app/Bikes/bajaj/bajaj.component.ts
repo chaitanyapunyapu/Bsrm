@@ -6,21 +6,30 @@ import { BikedetailsService } from 'src/app/service/bikedetails.service';
   templateUrl: './bajaj.component.html',
   styleUrls: ['./bajaj.component.css']
 })
-export class BajajComponent{
-  bikes=[{vimg:'',id:'',price:'',Model:'',Type:'',Engine:'',Gears:''}]
+export class BajajComponent implements OnInit {
+  bikes: any[] = [];
+  loading = true;
+  error: string | null = null;
 
-  constructor(private api:BikedetailsService) {
-    this.getBikes()
+  constructor(private api: BikedetailsService) {}
+
+  ngOnInit(): void {
+    this.getBikes();
   }
-  getBikes(){
-    this.api.getBajaj().subscribe(
-      data =>{
-        this.bikes=data
+
+  getBikes(): void {
+    this.loading = true;
+    this.api.getBajaj().subscribe({
+      next: (data) => {
+        this.bikes = data;
+        this.loading = false;
       },
-      error => {
-        console.log(error)
+      error: (err) => {
+        console.error('Error fetching Bajaj bikes', err);
+        this.error = 'Failed to load bikes. Please try again later.';
+        this.loading = false;
       }
-    )
+    });
   }
 
   func(){

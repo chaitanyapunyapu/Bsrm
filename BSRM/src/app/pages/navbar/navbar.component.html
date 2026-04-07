@@ -1,47 +1,38 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="side-nav-button p-2 me-3 text-light">
-    <i class="fa-solid fa-bars"></i>
-  </div>
-    <div class="container-fluid">
-      <a class="navbar-brand" routerLink="">Book My Motor</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li>
-            <form class="d-flex me-5">
-              <input class="form-control me-2" type="search" placeholder="Search">
-              <button class="btn btn-outline-dark" type="submit"><i class="bi bi-search"></i></button>
-          </form>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="home" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="motor" routerLinkActive="active-link">Motor</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="about" routerLinkActive="active-link">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="contact" routerLinkActive="active-link">Contact</a>
-          </li>      
-        <!--  -->    
-          <li class="nav-item" *ngIf="!authenticated">
-            <a routerLink="/" class="nav-link">Login</a>
-          </li>
-          <!-- <li class="nav-item" *ngIf="!authenticated">
-            <a routerLink="register" class="nav-link">Sign Up</a>
-          </li>       -->
-        <!--  -->        
-          <li class="nav-item" *ngIf="authenticated">
-            <a routerLink="/" class="nav-link" (click)="logout()" routerLinkActive="active-link">Logout</a>
-          </li>
-        </ul>
-        <!--  -->
-      </div>
+<mat-toolbar color="primary" class="navbar-toolbar sticky-top shadow-sm">
+  <div class="container d-flex align-items-center">
+    <!-- Brand -->
+    <a class="brand-link me-4" routerLink="/home">
+      <span class="text-gradient fw-bold fs-4">BSRM</span>
+    </a>
+
+    <!-- Nav Links (Desktop) -->
+    <div class="d-none d-md-flex align-items-center flex-grow-1">
+      <a mat-button routerLink="/home" routerLinkActive="active-nav">Home</a>
+      <a mat-button routerLink="/motor" routerLinkActive="active-nav">Motor</a>
+      <a mat-button routerLink="/about" routerLinkActive="active-nav">About</a>
+      <a mat-button routerLink="/contact" routerLinkActive="active-nav">Contact</a>
     </div>
-  </nav>
+
+    <!-- Right Side Actions -->
+    <div class="ms-auto d-flex align-items-center">
+      <ng-container *ngIf="!authenticated">
+        <a mat-stroked-button color="accent" routerLink="/" class="me-2">Login</a>
+        <a mat-flat-button color="accent" routerLink="/register">Join Us</a>
+      </ng-container>
+
+      <ng-container *ngIf="authenticated">
+        <button mat-icon-button [matMenuTriggerFor]="userMenu">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </ng-container>
+    </div>
+  </div>
+</mat-toolbar>
   
 

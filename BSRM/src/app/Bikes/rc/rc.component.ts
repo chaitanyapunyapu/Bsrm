@@ -7,21 +7,30 @@ import { BikedetailsService } from 'src/app/service/bikedetails.service';
   templateUrl: './rc.component.html',
   styleUrls: ['./rc.component.css']
 })
-export class RcComponent{
-  bikes=[{vimg:'',id:'',price:'',Model:'',Type:'',Engine:'',Gears:''}]
+export class RcComponent implements OnInit {
+  bikes: any[] = [];
+  loading = true;
+  error: string | null = null;
 
-  constructor(private api:BikedetailsService) {
-    this.getBikes()
+  constructor(private api: BikedetailsService) {}
+
+  ngOnInit(): void {
+    this.getBikes();
   }
-  getBikes(){
-    this.api.getRc().subscribe(
-      data =>{
-        this.bikes=data
+
+  getBikes(): void {
+    this.loading = true;
+    this.api.getRc().subscribe({
+      next: (data) => {
+        this.bikes = data;
+        this.loading = false;
       },
-      error => {
-        console.log(error)
+      error: (err) => {
+        console.error('Error fetching RC bikes', err);
+        this.error = 'Failed to load bikes. Please try again later.';
+        this.loading = false;
       }
-    )
+    });
   }
 
 

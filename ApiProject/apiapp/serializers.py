@@ -16,32 +16,32 @@ class BajajSerializer(serializers.ModelSerializer):
         
 class HeroSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Bajaj
+        model = Hero
         fields = '__all__'
         
 class KtmSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Bajaj
+        model = Ktm
         fields = '__all__'
         
 class RcSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Bajaj
+        model = Rc
         fields = '__all__'
         
 class SuzukiSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Bajaj
+        model = Suzuki
         fields = '__all__'
         
 class TvsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Bajaj
+        model = Tvs
         fields = '__all__'
         
 class YamahaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Bajaj
+        model = Yamaha
         fields = '__all__'
         
 class LogoSerializer(serializers.ModelSerializer):
@@ -96,3 +96,9 @@ class UserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+    def to_representation(self, instance):
+        """Ensure password is never returned in the representation."""
+        representation = super().to_representation(instance)
+        representation.pop('password', None)
+        return representation

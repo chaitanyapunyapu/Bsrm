@@ -11,8 +11,8 @@ from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
-import jwt, datetime
-from jwt import decode  
+import jwt
+import datetime
 from rest_framework import exceptions
 
 from django.http import JsonResponse
@@ -62,26 +62,36 @@ class Logoviewset(viewsets.ModelViewSet):
 #     # permission_classes=(IsAuthenticated,)
 
 
+from rest_framework import status
+
 class RegisterView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
+        if serializer.is_valid():
+            user = serializer.save()
+            return Response({
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'message': 'User registered successfully'
+            }, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginView(APIView):
     def post(self, request):
-        email = request.data['email']
-        password = request.data['password']
+        username = request.data.get('username')
+        password = request.data.get('password')
 
-        user = User.objects.filter(email=email).first()
+        if not username or not password:
+            return Response({'error': 'Please provide both username and password'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user = User.objects.filter(username=username).first()
 
         if user is None:
-            raise AuthenticationFailed('User not found!')
+            return Response({'error': 'User not found!'}, status=status.HTTP_404_NOT_FOUND)
 
         if not user.check_password(password):
-            raise AuthenticationFailed('Incorrect password!')
+            return Response({'error': 'Incorrect password!'}, status=status.HTTP_401_UNAUTHORIZED)
 
         payload = {
             'id': user.id,
@@ -89,44 +99,43 @@ class LoginView(APIView):
             'iat': datetime.datetime.utcnow()
         }
 
+        # It's better to use an environment variable for the secret in production
         token = jwt.encode(payload, 'secret', algorithm='HS256')
 
         response = Response()
-
         response.set_cookie(key='jwt', value=token, httponly=True)
+        # BSRM frontend expects 'token' in the JSON response
         response.data = {
+            'token': token,
             'jwt': token
         }
         return response
     
-    
-    
-from rest_framework import exceptions
-import jwt
-
 class UserView(APIView):
-
     def get(self, request):
         token = request.COOKIES.get('jwt')
 
         if not token:
-            raise exceptions.AuthenticationFailed('Unauthenticated!')
+            # Check Authorization header as fallback if cookies aren't used
+            auth_header = request.headers.get('Authorization')
+            if auth_header and auth_header.startswith('Bearer '):
+                token = auth_header.split(' ')[1]
+            else:
+                return Response({'error': 'Unauthenticated!'}, status=status.HTTP_401_UNAUTHORIZED)
 
         try:
-            payload = decode(token, 'secret', algorithms=['HS256'])
-        except jwt.exceptions.ExpiredSignatureError:
-    # handle the expired signature error here
-
-            raise exceptions.AuthenticationFailed('Token expired!')
-        except jwt.InvalidSignatureError:
-            raise exceptions.AuthenticationFailed('Invalid token!')
+            payload = jwt.decode(token, 'secret', algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            return Response({'error': 'Token expired!'}, status=status.HTTP_401_UNAUTHORIZED)
+        except jwt.InvalidTokenError:
+            return Response({'error': 'Invalid token!'}, status=status.HTTP_401_UNAUTHORIZED)
 
         user = User.objects.filter(id=payload['id']).first()
         if not user:
-            raise exceptions.AuthenticationFailed('User not found!')
+            return Response({'error': 'User not found!'}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = UserSerializer(user)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class LogoutView(APIView):

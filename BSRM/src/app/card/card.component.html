@@ -1,20 +1,22 @@
 
 
     <div class="container">
-        <div class="row">
-            <ng-container *ngFor="let ac of bikes">
-
-            <div class="card col-md-3">
-                <a routerLink="{{ac.link}}"><img src="{{ac.logo}}" alt="{{ac.alt}}" class="img-fluid"></a>
-                                    
-                        <!-- <button class="btn btn-danger btn-sm">Book Now</button> -->
-                        
-                        <button class="btn btn-danger btn-sm"><a routerLink="{{ac.link}}">View all <i class="bi bi-arrow-right"></i></a></button>
-                                        
-
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6" *ngFor="let ac of bikes">
+          <mat-card class="manufacturer-card">
+            <div class="logo-wrapper">
+              <a [routerLink]="[ac.link]">
+                <img [src]="ac.logo" [alt]="ac.alt" class="brand-logo">
+              </a>
             </div>
-        </ng-container>
+            <mat-card-actions align="end">
+              <a [routerLink]="[ac.link]" class="view-all-btn btn-primary">
+                View all <mat-icon>arrow_forward</mat-icon>
+              </a>
+            </mat-card-actions>
+          </mat-card>
         </div>
+      </div>
     </div>
 
 

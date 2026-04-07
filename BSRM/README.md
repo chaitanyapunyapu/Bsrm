@@ -1,27 +1,75 @@
-# BSRM
+# BSRM - Premium Motorcycle Rental & Sales
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
+BSRM is a full-stack web application designed for motorcycle enthusiasts to explore, compare, and book their favorite rides. Built with a modern **Django REST Framework** backend and a high-performance **Angular** frontend.
 
-## Development server
+## 🚀 Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Auth System**: Secure JWT-based authentication (Login/Register).
+- **Premium UI**: Deep Dark & Vibrant design system using Angular Material.
+- **Responsive**: Fully optimized for Mobile, Tablet, and Desktop.
+- **Dynamic Content**: Explore bikes from top manufacturers like Honda, Bajaj, KTM, Yamaha, Suzuki, and Hero.
+- **Booking Flow**: Streamlined process from model selection to booking.
+- **Secure API**: Environment-based configuration and protected routes.
 
-## Code scaffolding
+## 🛠️ Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Backend
+- **Framework**: Django 4.x & Django REST Framework (DRF).
+- **Auth**: Simple JWT.
+- **Environment**: python-dotenv for secret management.
+- **CORS**: django-cors-headers.
 
-## Build
+### Frontend
+- **Framework**: Angular 16+.
+- **UI Library**: Angular Material, Bootstrap 5.
+- **State Management**: Reactive services with RxJS.
+- **Styling**: Vanilla CSS with modern variables and glassmorphism.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 📦 Setup Instructions
 
-## Running unit tests
+### Backend Setup
+1. Navigate to the `ApiProject` directory.
+2. Create a `.env` file from the provided template:
+   ```env
+   SECRET_KEY=your_secret_key_here
+   DEBUG=True
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Run migrations:
+   ```bash
+   python manage.py migrate
+   ```
+5. Start the server:
+   ```bash
+   python manage.py runserver
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Frontend Setup
+1. Navigate to the `bsrm` directory.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   ng serve
+   ```
+4. Access the app at `http://localhost:4200`.
 
-## Running end-to-end tests
+## 🎨 Design Philosophy
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The application utilizes a **Deep Dark & Vibrant Green** theme:
+- **Primary Color**: Spring Green (`#00ff7f`) for calls to action.
+- **Background**: Deep Onyx (`#0a0e12`) for better readability and eye comfort.
+- **Typography**: "Outfit" font family for a modern, sleek feel.
+- **Visuals**: Glassmorphism effects and subtle micro-animations.
 
-## Further help
+## 🤝 Contributing
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This project is part of a modernized full-stack portfolio. Feel free to fork and enhance!
+
+---
+Developed by **Antigravity AI**

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { BikedetailsService } from 'src/app/service/bikedetails.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +16,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private authService: BikedetailsService
   ) {}
 
   ngOnInit(): void {
@@ -46,8 +48,17 @@ export class SignupComponent implements OnInit {
 
   submit(): void {
     if (this.registerForm.valid) {
-      this.http.post('http://127.0.0.1:8000/api/register', this.registerForm.getRawValue())
-        .subscribe(() => this.router.navigate(['/']));
+      const userData = this.registerForm.getRawValue();
+      this.authService.registerNewUser(userData).subscribe({
+        next: () => {
+          alert('Registration successful! Please login.');
+          this.router.navigate(['/']);
+        },
+        error: (err) => {
+          console.error('Registration failed', err);
+          alert('Registration failed. Username or Email might already be taken.');
+        }
+      });
     }
   }
 }

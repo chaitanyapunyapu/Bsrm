@@ -1,5 +1,5 @@
-import { Component,OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BikedetailsService } from 'src/app/service/bikedetails.service';
 
 @Component({
@@ -7,29 +7,35 @@ import { BikedetailsService } from 'src/app/service/bikedetails.service';
   templateUrl: './motorpage.component.html',
   styleUrls: ['./motorpage.component.css']
 })
-export class MotorpageComponent  implements OnInit{
-  bajajData: any[]=[];
+export class MotorpageComponent implements OnInit {
+  bajajData: any = null;
   getBajajId: any;
   bikes: any[] = [];
+  isImageOpen: boolean = false;
 
-  constructor(private param:ActivatedRoute, private api:BikedetailsService) { }
- 
+  constructor(
+    private param: ActivatedRoute,
+    private api: BikedetailsService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getBajajId = this.param.snapshot.paramMap.get('id');
-    console.log(this.getBajajId, 'getbajaj');
 
-    // fetch data from backend
     this.api.getBajaj().subscribe((bikes: any[]) => {
       this.bikes = bikes;
-
       if (this.getBajajId) {
-        this.bajajData = this.bikes.filter((value) => {
-          return value.id == this.getBajajId;
-        });
-        console.log(this.bajajData, 'bajajdata>>');
+        this.bajajData = this.bikes.find(b => b.id == this.getBajajId);
       }
-    })
+    });
   }
 
+  toggleImage(): void {
+    this.isImageOpen = !this.isImageOpen;
+    document.body.style.overflow = this.isImageOpen ? 'hidden' : 'auto';
+  }
+
+  goBack(): void {
+    this.router.navigate(['/bajaj']);
+  }
 }

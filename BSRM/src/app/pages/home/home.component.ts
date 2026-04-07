@@ -1,8 +1,8 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BikedetailsService } from 'src/app/service/bikedetails.service';
-import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
-import {Emitters} from '../emitters/emitters';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -13,33 +13,39 @@ export class HomeComponent implements OnInit{
   bikes=[{logo:'',id:'',alt:'',link:''}]
   message = '';
 
-  constructor(private api:BikedetailsService, private http: HttpClient, private router: Router){
-    this.getBikes()
-  }
+  constructor(
+    private api: BikedetailsService, 
+    private http: HttpClient, 
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.http.get('http://localhost:8000/api/user', {withCredentials: true}).subscribe(
-      (res: any) => {
-        this.message = res.username;
-        Emitters.authEmitter.emit(true);
-      },
-      err => {
-        this.message = 'You are not logged in';
-        Emitters.authEmitter.emit(false);
-      }
-    );
+    this.getBikes();
+    this.checkUser();
   }
 
-
-  getBikes(){
-    this.api.getLogo().subscribe(
-      data =>{
-        this.bikes=data
+  checkUser(): void {
+    this.http.get(`${environment.apiUrl}api/user/`).subscribe({
+      next: (res: any) => {
+        this.message = `Welcome back, ${res.username}`;
+        this.api.setAuthenticated(true);
       },
-      error => {
-        console.log(error)
+      error: () => {
+        this.message = 'Find Your Dream Ride';
+        this.api.setAuthenticated(false);
       }
-    )
+    });
+  }
+
+  getBikes(): void {
+    this.api.getLogo().subscribe({
+      next: (data) => {
+        this.bikes = data;
+      },
+      error: (err) => {
+        console.error('Error fetching logos', err);
+      }
+    });
   }
 
 

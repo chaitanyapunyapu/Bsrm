@@ -8,22 +8,31 @@ import { BikedetailsService } from 'src/app/service/bikedetails.service';
   styleUrls: ['./honda.component.css'],
   providers:[BikedetailsService]
 })
-export class HondaComponent{
-  bikes=[{vimg:'',id:'',price:'',Model:'',Type:'',Engine:'',Gears:''}]
- 
-constructor(private api:BikedetailsService) {
-  this.getBikes()
-}
-getBikes(){
-  this.api.getHonda().subscribe(
-    data =>{
-      this.bikes=data
-    },
-    error => {
-      console.log(error)
-    }
-  )
-}
+export class HondaComponent implements OnInit {
+  bikes: any[] = [];
+  loading = true;
+  error: string | null = null;
+
+  constructor(private api: BikedetailsService) {}
+
+  ngOnInit(): void {
+    this.getBikes();
+  }
+
+  getBikes(): void {
+    this.loading = true;
+    this.api.getHonda().subscribe({
+      next: (data) => {
+        this.bikes = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching Honda bikes', err);
+        this.error = 'Failed to load bikes. Please try again later.';
+        this.loading = false;
+      }
+    });
+  }
 
   func(){
     confirm("please confirm booking ")

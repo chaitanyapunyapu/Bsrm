@@ -1,35 +1,81 @@
-<div class="form-group">
-    <input type="street" 
-           class="form-control" 
-           id="autocomplete" 
-           placeholder="Street">
-    
-    <input type="city" 
-           class="form-control" 
-           id="inputCity" 
-           placeholder="City">
-    
-    <input type="state" 
-           class="form-control" 
-           id="inputState" 
-           placeholder="State">
-    
-    <input type="zip" 
-           class="form-control" 
-           id="inputZip" 
-           placeholder="Zip">
-    
-    <input type="county" 
-           class="form-control" 
-           id="inputNearByShowRoom" 
-           placeholder="Near By Show Room Location">
-    
-    <input type="country" 
-           class="form-control" 
-           id="inputCountry" 
-           placeholder="Country">
+<div class="address-page-wrapper section-padding">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <mat-card class="address-card p-0 overflow-hidden">
+          <div class="card-header-gradient p-4 text-white">
+            <h1 class="h3 mb-1">Confirm Your <span class="fw-bold">Address</span></h1>
+            <p class="mb-0 opacity-75">Please provide your delivery location for the bike booking.</p>
+          </div>
 
-           <button class="btn btn-danger btn-sm" (click)="func()" > Submit </button>
+          <div class="p-4 p-md-5">
+            <form class="address-form">
+              <div class="row">
+                <!-- Street Address -->
+                <div class="col-12 mb-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Street Address</mat-label>
+                    <input matInput id="autocomplete" placeholder="123 Bike St" name="street">
+                    <mat-icon matSuffix>map</mat-icon>
+                  </mat-form-field>
+                </div>
 
+                <!-- City & State -->
+                <div class="col-md-6 mb-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>City</mat-label>
+                    <input matInput id="inputCity" placeholder="Motor City" name="city">
+                    <mat-icon matSuffix>location_city</mat-icon>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>State</mat-label>
+                    <input matInput id="inputState" placeholder="California" name="state">
+                    <mat-icon matSuffix>corporate_fare</mat-icon>
+                  </mat-form-field>
+                </div>
+
+                <!-- Zip & Country -->
+                <div class="col-md-6 mb-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Zip Code</mat-label>
+                    <input matInput id="inputZip" placeholder="54321" name="zip">
+                    <mat-icon matSuffix>pin_drop</mat-icon>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Country</mat-label>
+                    <input matInput id="inputCountry" placeholder="USA" name="country">
+                    <mat-icon matSuffix>public</mat-icon>
+                  </mat-form-field>
+                </div>
+
+                <!-- Showroom Location -->
+                <div class="col-12 mb-4">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Nearby Showroom Location</mat-label>
+                    <input matInput id="inputNearByShowRoom" placeholder="North Avenue Showroom" name="showroom">
+                    <mat-icon matSuffix>storefront</mat-icon>
+                    <mat-hint>Choose the showroom where you'd like to pick up your bike.</mat-hint>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="d-grid gap-2">
+                <button mat-raised-button color="primary" class="btn-submit py-3" (click)="func()">
+                  <mat-icon class="me-2">check_circle</mat-icon>
+                  Confirm Address & Proceed
+                </button>
+                <button mat-button color="warn" type="button" class="mt-2" routerLink="/motor">
+                  Cancel Booking
+                </button>
+              </div>
+            </form>
+          </div>
+        </mat-card>
+      </div>
+    </div>
   </div>
-  
+</div>

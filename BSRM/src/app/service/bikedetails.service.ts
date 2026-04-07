@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders } from '@angular/common/http' ;
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BikedetailsService {
 
-  baseurl="http://127.0.0.1:8000/"
-  httpHeaders=new HttpHeaders({'Content-Type':'application/json'})
+  private baseurl = environment.apiUrl;
+  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  private apiUrl = 'http://127.0.0.1:8000/api/auth';
   private tokenKey = 'myapp_token';
+  private isAuthenticated = new BehaviorSubject<boolean>(this.isLoggedIn());
 
-  private isAuthenticated = new BehaviorSubject<boolean>(false)
+  constructor(private http: HttpClient) { }
 
-  constructor(private http:HttpClient) { }
-
-  
   get isAuthenticated$(): Observable<boolean> {
     return this.isAuthenticated.asObservable();
   }
@@ -27,24 +25,21 @@ export class BikedetailsService {
     this.isAuthenticated.next(value);
   }
 
-
-  // getLogo(): Observable<any>{
-  //   const url=this.baseurl+'api/logo/'
-  //   return this.http.get(url, {headers:this.httpHeaders})
-  // }
-  
-
   login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, { username, password }).pipe(
+    return this.http.post<any>(`${this.baseurl}api/login/`, { username, password }).pipe(
       tap(res => {
         const token = res.token;
-        sessionStorage.setItem(this.tokenKey, token);
+        if (token) {
+          sessionStorage.setItem(this.tokenKey, token);
+          this.setAuthenticated(true);
+        }
       })
     );
   }
 
   logout(): void {
     sessionStorage.removeItem(this.tokenKey);
+    this.setAuthenticated(false);
   }
 
   getToken(): string | null {
@@ -54,48 +49,46 @@ export class BikedetailsService {
   isLoggedIn(): boolean {
     return this.getToken() !== null;
   }
-  registerNewUser(userData:any): Observable<any>{
-    return this.http.post('http://127.0.0.1:8000/api/users/', userData)
+
+  registerNewUser(userData: any): Observable<any> {
+    return this.http.post(`${this.baseurl}api/register/`, userData);
   }
 
-
-  getHonda():Observable<any>{
-    return this.http.get(this.baseurl+ '/honda/',{headers: this.httpHeaders})
-  }
- 
-  getBajaj():Observable<any>{
-    return this.http.get(this.baseurl+ '/bajaj/',{headers: this.httpHeaders})
+  getHonda(): Observable<any> {
+    return this.http.get(`${this.baseurl}honda/`, { headers: this.httpHeaders });
   }
 
-  getHero():Observable<any>{
-    return this.http.get(this.baseurl+ '/hero/',{headers: this.httpHeaders})
+  getBajaj(): Observable<any> {
+    return this.http.get(`${this.baseurl}bajaj/`, { headers: this.httpHeaders });
   }
 
-  getKtm():Observable<any>{
-    return this.http.get(this.baseurl+ '/ktm/',{headers: this.httpHeaders})
+  getHero(): Observable<any> {
+    return this.http.get(`${this.baseurl}hero/`, { headers: this.httpHeaders });
   }
 
-  getRc():Observable<any>{
-    return this.http.get(this.baseurl+ '/rc/',{headers: this.httpHeaders})
+  getKtm(): Observable<any> {
+    return this.http.get(`${this.baseurl}ktm/`, { headers: this.httpHeaders });
   }
 
-  getSuzuki():Observable<any>{
-    return this.http.get(this.baseurl+ '/suzuki/',{headers: this.httpHeaders})
+  getRc(): Observable<any> {
+    return this.http.get(`${this.baseurl}rc/`, { headers: this.httpHeaders });
   }
 
-  getTvs():Observable<any>{
-    return this.http.get(this.baseurl+ '/tvs/',{headers: this.httpHeaders})
+  getSuzuki(): Observable<any> {
+    return this.http.get(`${this.baseurl}suzuki/`, { headers: this.httpHeaders });
   }
 
-  getYamaha():Observable<any>{
-    return this.http.get(this.baseurl+ '/yamaha/',{headers: this.httpHeaders})
+  getTvs(): Observable<any> {
+    return this.http.get(`${this.baseurl}tvs/`, { headers: this.httpHeaders });
   }
 
-  getLogo():Observable<any>{
-    return this.http.get(this.baseurl+ '/logo/',{headers: this.httpHeaders})
+  getYamaha(): Observable<any> {
+    return this.http.get(`${this.baseurl}yamaha/`, { headers: this.httpHeaders });
   }
 
- 
+  getLogo(): Observable<any> {
+    return this.http.get(`${this.baseurl}logo/`, { headers: this.httpHeaders });
+  }
 }
 
 

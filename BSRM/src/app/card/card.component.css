@@ -1,43 +1,61 @@
-.card img{
-    width: 200px;
-    height: 200px;
-    margin-bottom: 25px;
-    margin-left: 40px;
-    transition: 0.3s ease-in-out;
+.manufacturer-card {
+  padding: 30px !important;
+  background: #ffffff !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.card img:hover{
-    transition: 0.3s ease-in-out;
-    transform: scale(1.1);
-
+.manufacturer-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: var(--shadow-lg) !important;
+  border-color: var(--primary) !important;
 }
 
-.card{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin: 30px;
-    padding: 20px;
-    min-width: 0;
-    border: none;
+.logo-wrapper {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-h2{
-    font-weight: bold;
-    color: rgb(252, 14, 14);
+.brand-logo {
+  max-width: 100%;
+  max-height: 120px;
+  filter: grayscale(1) opacity(0.5);
+  transition: all 0.4s ease;
 }
 
-td{
-    font-weight: bold;
-} 
-
-button:hover{
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+.manufacturer-card:hover .brand-logo {
+  filter: grayscale(0) opacity(1);
 }
 
-a{
-    color: #fff;
-    text-decoration: none;
+.view-all-btn {
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  padding: 8px 20px !important;
+  border-radius: 50px !important;
+  color: #ffffff !important;
 }
 
+.view-all-btn mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.view-all-btn:hover {
+  gap: 12px;
+  box-shadow: 0 4px 15px rgba(0, 204, 102, 0.3) !important;
+}

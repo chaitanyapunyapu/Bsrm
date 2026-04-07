@@ -1,42 +1,76 @@
-input, label {
-    margin: 5px 5px;
-  }
-  
-  .form-group {
-    margin: 30px auto;
-    width: 450px;
-  }
-  
-  .form-control {
-    float: left;
-  }
-  
-  #inputStreet {
-    width: 100%;
-  }
-  
-  #inputCity {
-    width: 50%;
-  }
-  
-  #inputState {
-    width: 15%;
-  }
-  
-  #inputZip {
-    width: 28%;
-  }
-  
-  #inputCounty {
-    width: 45%;
-  }
-  
-  #inputCountry {
-    width: 50%;
-  }
-
-  button:hover{
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+.address-page-wrapper {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
-  
+
+.address-card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.address-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.card-header-gradient {
+  background: linear-gradient(135deg, #1a1f3c 0%, #344767 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-padding {
+  padding: 80px 0;
+}
+
+.fw-bold {
+  font-weight: 700 !important;
+}
+
+.h3 {
+  font-size: 1.75rem;
+  letter-spacing: -0.5px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #1a1f3c !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+  color: #1a1f3c !important;
+}
+
+.btn-submit {
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  background-color: #1a1f3c !important;
+}
+
+.btn-submit:hover {
+  background-color: #2d3748 !important;
+  box-shadow: 0 4px 12px rgba(26, 31, 60, 0.2);
+}
+
+mat-icon {
+  vertical-align: middle;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 40px 0;
+  }
+  .address-card {
+    margin: 0 15px;
+  }
+}

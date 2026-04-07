@@ -1,161 +1,98 @@
-.banner{
-    background-image: url("../../../assets/img/race.jpg");
-    height: 700px;
-    background-position: center ;
-    background-size: cover;
-    background-repeat: no-repeat;
-    /* background-attachment:fixed; */
-    /* overflow: hidden; */
+.home-wrapper {
+  overflow-x: hidden;
 }
 
-.content h1{
-    color: rgb(100, 32, 209);
-    font-size: 60px;
-    font-weight: bold;
-    
+.hero-section {
+  height: 85vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
-.content{
-    top: 25%;
-    left: 5%;
-    position:absolute;
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.9) 20%, rgba(255, 255, 255, 0.2) 100%);
+  display: flex;
+  align-items: center;
 }
 
-.content a{
-    text-decoration: none;
-    background-color: #fff;
-    color: var(--primary-color);
-    padding: 15px 20px;
-    border-radius: 5px;
-    font-size: 15px;
+.hero-title {
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  max-width: 800px;
+  color: var(--text-main);
 }
 
-.content a:hover{
-    background-color: var(--primary-color);
-    color: #fff;
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  max-width: 600px;
 }
 
-/* bikes detail */
-
-/* .col-md-3{
-    width: 150px;
-    height: 200px;
-    padding: 10px;
-    position:static;
-    align-items: center;
-} */
-/* card{
-    width: 250px;
-    height: 250px;
-    padding: 10px;
-} */
-
-/* img{
-    width:100px;
-} */
-
-a:link,a:visited{
-    /* background-color: rgb(22, 25, 218);
-    padding: 5px 10px;
-    text-align: center; */
-    /* display: inline-block; */
-    /* margin-left: 20px; */
-    /* margin-right: 100px; */
-    text-decoration: none;
-    color: #f1edf5;
+.explore-btn {
+  padding: 12px 32px !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  border-radius: 50px !important;
 }
 
-img {
-    width: 60%;
-    margin: auto;
-    display: block;
+.brand-card {
+  padding: 24px !important;
+  background: #ffffff !important;
+  border: 1px solid var(--border-color) !important;
+  cursor: pointer;
+  transition: all 0.4s ease !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+  box-shadow: var(--shadow-sm);
+}
+
+.brand-card:hover {
+  border-color: var(--primary) !important;
+  transform: translateY(-8px);
+  background: #ffffff !important;
+  box-shadow: var(--shadow-lg);
+}
+
+.brand-logo-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-logo {
+  max-width: 100%;
+  max-height: 80px;
+  filter: grayscale(1) opacity(0.6);
+  transition: all 0.3s ease;
+}
+
+.brand-card:hover .brand-logo {
+  filter: grayscale(0) opacity(1);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 3rem;
   }
-
- .card-body{
-    text-align: center;
- }
-
-img{
-    width:6rem;
-    height:6rem;
-}
-
-.row{
-    display: flex;
-}
-
-.highlight{
-    color: var(--primary-color);
-    font-weight: bold;
-    font-style: italic;
-    text-decoration: underline;
-}
-
-.co a{
-    text-decoration: none;
-    background-color: rgb(252, 238, 42);
-    color: black;
-    padding: 15px 20px;
-    border-radius: 5px;
-    font-size: 15px;
-}
-
-.co a:hover{
-    background-color: var(--primary-color);
-    color: #fff;
-}
-
-.co{
-    left: 100px;
-    position:relative;
-
-}
-
-/* new */
-
-.card img{
-    width: 200px;
-    height: 200px;
-    margin-bottom: 25px;
-    margin-left: 40px;
-    transition: 0.3s ease-in-out;
-}
-
-.card img:hover{
-    transition: 0.3s ease-in-out;
-    transform: scale(1.1);
-
-}
-
-.card{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin: 30px;
-    padding: 20px;
-    min-width: 0;
-    border: none;
-}
-
-h2{
-    font-weight: bold;
-    color: rgb(252, 14, 14);
-}
-
-td{
-    font-weight: bold;
-} 
-
-button:hover{
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-a{
-    color: #fff;
-    text-decoration: none;
-}
-
-h1{
-    padding-top: 60px;
+  .hero-section {
+    height: 60vh;
+  }
 }

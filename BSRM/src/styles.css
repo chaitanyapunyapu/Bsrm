@@ -1,23 +1,320 @@
-/* You can add global styles to this file, and also import other style files */
-*
-{
-    padding: 0;
-    margin: 0;
-}
-:root
-{
-    --primary-color:#3FC060;
-    --secondary-color:#162328;
-}
-body
-{
-    height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
+/* Global Styles - BSRM Premium Design System */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
 
+:root {
+  --primary: #00cc66; /* Slightly deeper green for better contrast on light */
+  --primary-light: #00ff7f;
+  --bg-deep: #f8f9fa; /* Soft off-white */
+  --bg-card: #ffffff; /* Pure white */
+  --bg-card-hover: #ffffff;
+  --text-main: #1a1f36; /* Slate/Navy for crisp reading */
+  --text-muted: #697386;
+  --border-color: #e6e9ef;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.12);
+  --glass-bg: rgba(255, 255, 255, 0.9);
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.btn{
-    margin: 5px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Global Transitions */
+a, button, input, .card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Material Overrides */
+.mat-toolbar {
+  background: var(--bg-card) !important;
+  color: var(--text-main) !important;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mat-card {
+  background-color: var(--bg-card) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 12px !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.mat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg) !important;
+  border-color: var(--primary);
+}
+
+/* Custom UI Elements */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #ffffff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 12px rgba(0, 204, 102, 0.3);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #00cc66, #00d2ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Form Styling */
+.form-control {
+  background: #ffffff !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-main) !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+}
+
+.form-control:focus {
+  border-color: var(--primary) !important;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 204, 102, 0.1) !important;
+}
+/* Professional Bike Card Styles */
+.bike-card {
+  border-radius: 20px !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.bike-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg) !important;
+  border-color: var(--primary) !important;
+}
+
+.card-img-wrapper {
+  height: 220px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fdfdfd;
+}
+
+.card-img-wrapper img {
+  max-width: 90%;
+  max-height: 90%;
+  transition: transform 0.5s ease;
+}
+
+.bike-card:hover .card-img-wrapper img {
+  transform: scale(1.1);
+}
+
+.price-tag {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.5px;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.spec-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.spec-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.book-btn {
+  border-radius: 50px !important;
+  padding: 8px 24px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  transition: all 0.3s ease !important;
+}
+
+.book-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 204, 102, 0.3) !important;
+}
+/* Detail Page & Lightbox Styles */
+.detail-page-container {
+  min-height: calc(100vh - 70px);
+  padding: 60px 0;
+  background: var(--bg-deep);
+}
+
+.detail-card {
+  border-radius: 24px !important;
+  background: #ffffff !important;
+  box-shadow: var(--shadow-lg) !important;
+  border: 1px solid var(--border-color) !important;
+  overflow: hidden;
+}
+
+.detail-img-sector {
+  background: #fdfdfd;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: zoom-in;
+}
+
+.detail-img-sector img {
+  max-width: 90%;
+  max-height: 90%;
+  transition: transform 0.3s ease;
+}
+
+.detail-img-sector:hover img {
+  transform: scale(1.05);
+}
+
+.zoom-hint {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(26, 31, 54, 0.6);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(4px);
+}
+
+.detail-info-sector {
+  padding: 40px;
+  border-left: 1px solid var(--border-color);
+}
+
+.detail-price {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 24px;
+}
+
+.back-btn {
+  margin-bottom: 30px !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  color: var(--text-muted) !important;
+}
+
+/* Lightbox Modal */
+.image-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(26, 31, 54, 0.95);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.3s ease;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.lightbox-close:hover {
+  background: var(--primary) !important;
+  transform: rotate(90deg);
+}
+
+.lightbox-content img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 991px) {
+  .detail-info-sector {
+    border-left: none;
+    border-top: 1px solid var(--border-color);
+  }
+  .detail-img-sector {
+    height: 350px;
+  }
 }

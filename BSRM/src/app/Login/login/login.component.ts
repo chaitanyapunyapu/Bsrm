@@ -24,15 +24,26 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      email: '',
-      password: ''
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
   submit(): void {
-    this.http.post('http://localhost:8000/api/login', this.form.getRawValue(), {
-      withCredentials: true
-    }).subscribe(() => this.router.navigate(['/home']));
+    if (this.form.invalid) {
+      return;
+    }
+
+    const { username, password } = this.form.getRawValue();
+    this.authService.login(username, password).subscribe({
+      next: () => {
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        console.error('Login failed', err);
+        alert(err.error?.error || 'Login failed. Please check your credentials.');
+      }
+    });
   }
 }
 

@@ -7,22 +7,30 @@ import { BikedetailsService } from 'src/app/service/bikedetails.service';
   templateUrl: './ktm.component.html',
   styleUrls: ['./ktm.component.css']
 })
-export class KtmComponent{
-  bikes=[{vimg:'',id:'',price:'',Model:'',Type:'',Engine:'',Gears:''}]
- 
+export class KtmComponent implements OnInit {
+  bikes: any[] = [];
+  loading = true;
+  error: string | null = null;
 
-  constructor(private api:BikedetailsService) {
-    this.getBikes()
+  constructor(private api: BikedetailsService) {}
+
+  ngOnInit(): void {
+    this.getBikes();
   }
-  getBikes(){
-    this.api.getKtm().subscribe(
-      data =>{
-        this.bikes=data
+
+  getBikes(): void {
+    this.loading = true;
+    this.api.getKtm().subscribe({
+      next: (data) => {
+        this.bikes = data;
+        this.loading = false;
       },
-      error => {
-        console.log(error)
+      error: (err) => {
+        console.error('Error fetching KTM bikes', err);
+        this.error = 'Failed to load bikes. Please try again later.';
+        this.loading = false;
       }
-    )
+    });
   }
 
   

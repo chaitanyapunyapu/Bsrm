@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import {Emitters} from '../emitters/emitters';
-import {HttpClient} from '@angular/common/http';
+
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { BikedetailsService } from 'src/app/service/bikedetails.service';
 
 
@@ -15,21 +16,22 @@ export class NavbarComponent implements OnInit{
   @Output() sideNavToggled=new EventEmitter<boolean>();
 
   // menustatus: boolean=false;
-  constructor(private http: HttpClient) {
-  }
+  constructor(
+    private http: HttpClient, 
+    private authService: BikedetailsService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    Emitters.authEmitter.subscribe(
-      (auth: boolean) => {
-        this.authenticated = auth;
-      }
-    );
+    this.authService.isAuthenticated$.subscribe(res => {
+      this.authenticated = res;
+    });
   }
 
 
   logout(): void {
-    this.http.post('http://localhost:8000/api/logout', {}, {withCredentials: true})
-      .subscribe(() => this.authenticated = false);
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 
 }
