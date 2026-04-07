@@ -72,4 +72,4 @@ The application utilizes a **Deep Dark & Vibrant Green** theme:
 This project is part of a modernized full-stack portfolio. Feel free to fork and enhance!
 
 ---
-Developed by **Antigravity AI**
+Developed by **Chaitanya Punyapu**
